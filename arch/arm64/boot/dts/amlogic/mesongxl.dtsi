@@ -685,113 +685,14 @@
 		};
 
 	};
-	aml_remote:meson-remote {
+	meson-remote {
 		compatible = "amlogic, aml_remote";
 		dev_name = "meson-remote";
-		reg = <0x0 0xc8100580 0x00 0x44>, /*Multi-format IR controller*/
-			<0x0 0xc8100480 0x00 0x20>; /*Legacy IR controller*/
 		status = "okay";
-		protocol = <REMOTE_TYPE_NEC>;
 		remote_ao_offset = <0x580>; /* 0x400 + (0x20 + idx)<<2 -- old ; 0x400 + (0x60 +idx)<<2 --new   */
 		interrupts = <0 196 1>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&remote_pins>;
-		map = <&custom_maps>;
-		max_frame_time = <200>; /*set software decoder max frame time*/
-	};
-	meson-irblaster {
-		compatible = "amlogic, am_irblaster";
-		dev_name = "meson-irblaster";
-		status = "disabled";
-		pinctrl-names = "default";
-		pinctrl-0 = <&irblaster_pins>;
-	};
-	custom_maps:custom_maps {
-		mapnum = <2>;
-		map0 = <&map_0>;
-		map1 = <&map_1>;
-		map_0: map_0{
-			mapname = "khadas-ir";
-			customcode = <0x4040					>;
-			release_delay = <20>;
-			fn_key_scancode = <0x47>;
-			cursor_left_scancode = <0x10>;
-			cursor_right_scancode = <0x11>;
-			cursor_up_scancode = <0x0b>;
-			cursor_down_scancode = <0x0e>;
-			cursor_ok_scancode = <0x0d>;
-			size  = <13>;
-			keymap = <REMOTE_KEY(0x43,113)
-				REMOTE_KEY(0x45,125)
-				REMOTE_KEY(0x42,1)
-				REMOTE_KEY(0x0d,97)
-				REMOTE_KEY(0x10,105)
-				REMOTE_KEY(0x0b,103)
-				REMOTE_KEY(0x0e,108)
-				REMOTE_KEY(0x11,106)
-				REMOTE_KEY(0x18,115)
-				REMOTE_KEY(0x17,114)
-				REMOTE_KEY(0x4d,116)
-				REMOTE_KEY(0x1a,103)
-				REMOTE_KEY(0x47,71)>;
-		};
-		map_1: map_1{
-			mapname = "dvb-ir";
-			customcode = <0xfe01>;
-			release_delay = <80>;
-			fn_key_scancode = <0x0d>;
-			cursor_left_scancode = <0x54>;
-			cursor_right_scancode = <0x15>;
-			cursor_up_scancode = <0x59>;
-			cursor_down_scancode = <0x51>;
-			cursor_ok_scancode = <0x55>;
-			size  = <45>;
-			keymap = <REMOTE_KEY(0x0d,272)
-				REMOTE_KEY(0x00,116)
-				REMOTE_KEY(0x50,102)
-				REMOTE_KEY(0x41,113)
-				REMOTE_KEY(0x48,115)
-				REMOTE_KEY(0x0b,114)
-				REMOTE_KEY(0x58,139)
-				REMOTE_KEY(0x59,103)
-				REMOTE_KEY(0x51,108)
-				REMOTE_KEY(0x54,105)
-				REMOTE_KEY(0x15,106)
-				REMOTE_KEY(0x55,232)
-				REMOTE_KEY(0x1e,11)
-				REMOTE_KEY(0x13,2)
-				REMOTE_KEY(0x12,3)
-				REMOTE_KEY(0x10,4)
-				REMOTE_KEY(0x17,5)
-				REMOTE_KEY(0x16,6)
-				REMOTE_KEY(0x14,7)
-				REMOTE_KEY(0x1b,8)
-				REMOTE_KEY(0x1a,9)
-				REMOTE_KEY(0x18,10)
-				REMOTE_KEY(0x11,14)
-				REMOTE_KEY(0x07,128)
-				REMOTE_KEY(0x40,121)
-				REMOTE_KEY(0x03,120)
-				REMOTE_KEY(0x01,123)
-				REMOTE_KEY(0x05,122)
-				REMOTE_KEY(0x44,119)
-				REMOTE_KEY(0x19,158)
-				REMOTE_KEY(0x04,104)
-				REMOTE_KEY(0x06,109)
-				REMOTE_KEY(0x5c,365)
-				REMOTE_KEY(0x1d,358)
-				REMOTE_KEY(0x0a,398)
-				REMOTE_KEY(0x4d,399)
-				REMOTE_KEY(0x0e,400)
-				REMOTE_KEY(0x0c,401)
-				REMOTE_KEY(0x1c,750)
-				REMOTE_KEY(0x08,751)
-				REMOTE_KEY(0x45,752)
-				REMOTE_KEY(0x1f,753)
-				REMOTE_KEY(0x4c,754)
-				REMOTE_KEY(0x49,755)
-				REMOTE_KEY(0x09,756)>;
-		};
 	};
 
 	rng {
