@@ -21,8 +21,6 @@
 #include <dt-bindings/reset/aml_gxl.h>
 #include <dt-bindings/thermal/thermal.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
-#include <dt-bindings/input/input.h>
-#include <dt-bindings/input/meson_rc.h>
 #include <dt-bindings/pwm/pwm.h>
 #include <dt-bindings/pwm/meson.h>
 #include "mesongxbb-gpu-mali450.dtsi"
@@ -716,6 +714,14 @@
 		resets = <&clock GCLK_IDX_SARADC>;
 		reg = <0x0 0xc1108680 0x0 0x30
 					 0x0 0xc883c3d8 0x0 0x08>;
+	};
+	
+	fd628_dev {
+		compatible = "amlogic,fd628_dev";
+		status = "okay";
+		fd628_gpio_clk = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>;
+		fd628_gpio_dat = <&gpio GPIODV_26 GPIO_ACTIVE_HIGH>;
+		fd628_gpio_stb = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
 	};
 
 	defendkey: defendkey {
